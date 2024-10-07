@@ -9,7 +9,8 @@
       </div>
     </div>
     <div class="moudle">
-      <Location v-for="(item,index) in shelfStatus" v-bind="item" :key="index" />
+<!--      <Location v-for="(item,index) in cardList" v-bind="item" :key="index" />-->
+      <LocationStatusTable />
     </div>
   </div>
 </template>
@@ -19,6 +20,8 @@ import {ref, onMounted} from 'vue'
 import Location  from '@/components/locationProgress/index.vue'
 import {progressColorKey} from "@/utils/progress.js";
 import {progressColor} from "@/enum/common.js";
+
+import LocationStatusTable from "./locationStatusTable.vue";
 
 defineProps({
   shelfStatus: {
