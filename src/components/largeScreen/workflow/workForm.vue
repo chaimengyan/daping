@@ -8,6 +8,7 @@
         <div class="row-label">{{item.label}}</div>
         <div>：</div>
         <div class="row-content">{{ formData[item.prop] }}</div>
+        <!-- <div class="row-content">{{ item.prop }}</div> -->
       </div>
     </div>
 
@@ -40,7 +41,7 @@ const formList = ref([
     prop: 'planNum'
   },
   {
-    label: '当前状态',
+    label: '作业状态',
     prop: 'status'
   },
   // {
@@ -84,12 +85,13 @@ const formList = ref([
   }
   .form-body {
     margin-top: 10px;
+    padding: 10px 0;
     display: flex;
     justify-content: space-between;
     .form-row {
       display: flex;
       color: #242424;
-      font-size: 14px;
+      font-size: 16px;
       .row-label {
       }
       .row-content {

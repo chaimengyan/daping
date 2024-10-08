@@ -31,13 +31,13 @@ import CheckStatus from '@/components/largeScreen/checkStatus/index.vue'
 import {request} from "@/utils/request.js";
 
 onMounted(() => {
-  setInterval(() => {
-    dateDisplay.value = updateTime()
-    getJobStatistics()
-    getError()
-    getShelfStatus()
-    inOrOutNow()
-  }, 1000)
+  // setInterval(() => {
+  //   dateDisplay.value = updateTime()
+  //   getJobStatistics()
+  //   getError()
+  //   getShelfStatus()
+  //   inOrOutNow()
+  // }, 1000)
   dateDisplay.value = updateTime()
     
 })
@@ -113,11 +113,13 @@ function getShelfStatus() {
   padding: 20px;
   padding-top: 0;
   overflow-y: auto;
-display: flex;
+  display: flex;
   flex-direction: column;
 
   .info-header {
     display: flex;
+    height: 0;
+    flex: 0.5;
 
     .info-header-left {
       flex-grow: 1;
@@ -125,6 +127,7 @@ display: flex;
 
     .info-header-right {
       margin-left: 20px;
+      flex: 0.5;
     }
   }
 
@@ -132,6 +135,8 @@ display: flex;
     flex: 1;
     display: flex;
     margin-top: 20px;
+    height: 0;
+    overflow: hidden;
 
     .workflow {
       width: 0;

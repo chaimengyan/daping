@@ -57,6 +57,9 @@ const cardList = ref([
   border: #ffffff solid 2px;
   border-radius: 10px;
   background-image: linear-gradient(to bottom, #b7d8d7, #edf4fe);
+
+  display: flex;
+  flex-direction: column;
   .moudle-title {
     color: #1a796a;
     font-size: 18px;
@@ -78,15 +81,24 @@ const cardList = ref([
     display: flex;
     margin-top: 10px;
     justify-content: space-around;
-    padding: 0 80px;
+    //padding: 0 80px;
 
-    .moudle-card:first-child {
-      margin-right: 80px;
-    }
+    height: 0 !important;
+    flex: 1;
+    column-gap: 10px;
+
+    //.moudle-card:first-child {
+    //  margin-right: 80px;
+    //}
     .moudle-card {
-      width: 200px;
-      position: relative;
 
+      flex: 1;
+      width: 0;
+      height: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
       .card-bg {
         width: 100%;
       }

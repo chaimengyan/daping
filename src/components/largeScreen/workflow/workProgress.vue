@@ -5,11 +5,11 @@
 
   <!-- 出库是有任务了,1节点显示取货中,status是取货完成时,第一节点显示取货完成,第二节点显示行驶中, -->
   <!-- status是扫描中时,第二节点显示扫描中,status是出库中时,第二节点显示扫描完成,第三节点显示出库中，最后status是已出库 -->
-  <!--入库：['卸货中','卸货完成','扫描中','扫描完成','上架中','已上架']  -->
+  <!--入库：['月台亮灯（横线上不显示文字）','入库月台搬运中','卸货完成','RFID扫描完成','上架中','上架完成']  -->
   <!--出库：['取货中','取货完成','扫描中','扫描完成','出库中','已出库']  -->
   <div class="workProgress">
     <div class="moudle-title">
-      状态详情: {{progressData.status}}
+      作业状态: {{progressData.status}}
     </div>
     <div class="moudle">
       <div class="car">
@@ -19,14 +19,14 @@
 
       <div class="line-content">
         <div class="line1">
-          <template v-if="['卸货完成','取货完成','扫描完成','扫描中','上架中','已上架','出库中','已出库'].includes(progressData.status)">
+          <template v-if="['卸货完成','取货完成','扫描完成','RFID扫描完成','扫描中','上架中','上架完成','出库中','已出库'].includes(progressData.status)">
             <img class="complete-icon" src="/images/complete.png" alt="">
             <span 
               class="desc" 
               style="color: #1a796a"
               >{{ progressData.type === '入库' ? '卸货完成' : '取货完成' }}</span>
           </template>
-          <template v-if="['卸货中','取货中'].includes(progressData.status)">
+          <template v-if="['入库月台搬运中','取货中'].includes(progressData.status)">
             <div class="loading">
               <span></span>
               <span></span>
@@ -52,14 +52,14 @@
         </div>
 
         <div class="line2">
-          <template v-if="['扫描完成','上架中','已上架','出库中','已出库'].includes(progressData.status)">
+          <template v-if="['扫描完成','RFID扫描完成','上架中','上架完成','出库中','已出库'].includes(progressData.status)">
             <img class="complete-icon" src="/images/complete.png" alt="">
             <span 
               class="desc" 
               style="color: #1a796a"
               >{{ progressData.type === '入库' ? 'RFID扫描完成' : 'RFID扫描完成' }}</span>
           </template>
-          <template v-if="['扫描中'].includes(progressData.status)">
+          <template v-if="['卸货完成', '扫描中'].includes(progressData.status)">
             <div class="loading">
               <span></span>
               <span></span>
@@ -67,7 +67,7 @@
               <span></span>
               <span></span>
             </div>
-            <span class="desc" style="color: #f7ab00">{{ progressData.type === '入库' ? '行驶中' : '行驶中' }}</span>
+            <span class="desc" style="color: #f7ab00">{{ progressData.type === '入库' ? '搬运至扫描区' : '搬运至扫描区' }}</span>
           </template>
           <img src="/images/middleLine.png" alt="">
         </div>
@@ -79,14 +79,14 @@
 
 
         <div class="line3">
-          <template v-if="['已上架','已出库'].includes(progressData.status)">
+          <template v-if="['上架完成','已出库'].includes(progressData.status)">
             <img class="complete-icon" src="/images/complete.png" alt="">
             <span 
               class="desc" 
               style="color: #1a796a"
               >{{ progressData.type === '入库' ? '上架完成' : '下架完成' }}</span>
           </template>
-          <template v-if="['上架中','出库中'].includes(progressData.status)">
+          <template v-if="['RFID扫描完成','上架中','出库中'].includes(progressData.status)">
             <div class="loading">
               <span></span>
               <span></span>
@@ -120,14 +120,19 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 
-defineProps({
+ const props = defineProps({
   progressData: {
     type: Array,
   },
 })
 
 onMounted(() => {
+  // props.progressData.status = 'RFID扫描完成'
 
+  // setTimeout(() => {
+  // props.progressData.status = '上架中'
+    
+  // }, 2000);
 })
 
 
@@ -197,7 +202,7 @@ onMounted(() => {
   border: #ffffff solid 2px;
   border-radius: 10px;
   background-color:  #edf4fe;
-  margin-top: 10px;
+  margin-top: 20px;
 
   .moudle-title {
     width: 100%;
@@ -207,9 +212,9 @@ onMounted(() => {
     color: #808080;
   }
   .moudle {
+    margin-top: 60px;
     display: flex;
     flex-direction: column;
-
     .line-content {
       display: flex;
       align-items: baseline;
@@ -219,6 +224,9 @@ onMounted(() => {
       width: 70px !important;
     }
 
+    .aio, .access-door, .warehouse-location  {
+      align-items: center;
+    }
     .car, .aio, .access-door, .warehouse-location {
       flex-shrink: 0;
       width: 100px;

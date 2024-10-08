@@ -21,7 +21,7 @@
           </table>
         </div>
 
-          <div class="scroll-table" :style="{ height }" @scroll="onScroll">
+          <div ref="crudContainerRef" class="scroll-table" :style="{ height }" @scroll="onScroll">
             <table :style="{transform: `translateY(${top}px)`}" class="table-body">
               <colgroup>
                 <col v-for="item in crudHeader" :key="item.dataIndex" :width="item.width">
@@ -55,49 +55,6 @@ import Progress from '@/components/largeScreen/workflow/workProgress.vue'
 import WorkCrud from '@/components/largeScreen/workflow/workCrud.vue'
 import WarehouseStatus from '@/components/largeScreen/workflow/warehouseStatus.vue'
 import WorkForm from '@/components/largeScreen/workflow/workForm.vue'
-
-
-const props = defineProps({
-  crudData: {
-    type: Array,
-    default: () => []
-  },
-  crudHeader: {
-    type: Array,
-  },
-  title: {
-    type: String,
-  },
-})
-
-const currentData = ref([...props.crudData]);
-
-watch(() => props.crudData, () => {
-  if (!currentData.value.length) {
-    currentData.value = [...props.crudData]
-  } else {
-    // 去重合并对象
-    mergeData(props.crudData);
-  }
-})
-
-onMounted(() => {
-  init()
-})
-const top = ref(0)
-const maxNum = 6;
-const statusDic = {
-  "0": '待入库',
-  "1": '入库中',
-  "2": '已完成',
-}
-  
-
-const tableRowRef = ref()
-const headerRef = ref()
-let rowHeight = 0;
-const isScroll = ref(false);
-const height = ref()
 const data = ref([
   {
     id: 1,
@@ -163,8 +120,77 @@ const data = ref([
     unit: '个',
     number: '10',
     location: 'location',
+  },
+  {
+    id: 6,
+    name: '6',
+    project: 'project',
+    suppler_name:'suppler_name',
+    status: 'status',
+    order_number: 'order_number',
+    project_no: '2',
+    row_marial_name: '2',
+    unit: '个',
+    number: '10',
+    location: 'location',
+  },
+  {
+    id: 7,
+    name: '7',
+    project: 'project',
+    suppler_name:'suppler_name',
+    status: 'status',
+    order_number: 'order_number',
+    project_no: '2',
+    row_marial_name: '2',
+    unit: '个',
+    number: '10',
+    location: 'location',
   }
 ])
+
+
+const props = defineProps({
+  crudData: {
+    type: Array,
+    default: () => []
+  },
+  crudHeader: {
+    type: Array,
+  },
+  title: {
+    type: String,
+  },
+})
+
+const currentData = ref([...props.crudData]);
+
+watch(() => props.crudData, () => {
+  if (!currentData.value.length) {
+    currentData.value = [...props.crudData]
+  } else {
+    // 去重合并对象
+    mergeData(props.crudData);
+  }
+})
+
+onMounted(() => {
+  init()
+})
+const top = ref(0)
+const statusDic = {
+  "0": '待入库',
+  "1": '入库中',
+  "2": '已完成',
+}
+  
+
+const tableRowRef = ref()
+const headerRef = ref()
+const crudContainerRef = ref()
+let rowHeight = 0;
+const isScroll = ref(false);
+const height = ref()
 
 
 const header = [
@@ -206,16 +232,18 @@ function onScroll(e) {
 }
 
 function init() {
-  if (currentData.value?.length > maxNum) {
-    // 开启定时滚动
-    isScroll.value = true;
-    if (tableRowRef.value.length) {
-      rowHeight = tableRowRef.value[0].clientHeight;
+  if (tableRowRef.value.length) {
+    rowHeight = tableRowRef.value[0].clientHeight;
+    const maxNum = Math.floor(crudContainerRef.value.clientHeight / rowHeight) - 1
+    console.log(crudContainerRef.value.clientHeight, rowHeight, 'ddd')
+    if (currentData.value?.length > maxNum) {
+      // 开启定时滚动
+      isScroll.value = true;
       height.value = maxNum * rowHeight + 'px'
       setInterval(flushData, 1000 / 160)
     }
-
   }
+
 }
 
 
@@ -235,12 +263,16 @@ function flushData() {
 <style lang="scss" scoped>
 .workCrud {
   //width: 100%;
-  //height: 100%;
+  height: 0;
+  flex: 1;
   padding: 10px;
   border: #ffffff solid 2px;
   border-radius: 10px;
   background-color:  #edf4fe;
   margin-top: 20px;
+
+  display: flex;
+  flex-direction: column;
 
   .moudle-title {
     color: #f7ab00;
@@ -262,10 +294,14 @@ function flushData() {
 
   .crud-container {
     margin-top: 10px;
+    flex: 1;
+    height: 0;
   }
   .crud-moudle {
+    height: 100%;
     overflow: hidden;
-
+    display: flex;
+    flex-direction: column;
     .table-header-container {
       //position: sticky;
       //top: 0;
@@ -315,6 +351,8 @@ function flushData() {
     }
 
     .scroll-table {
+      flex: 1;
+      height: 0;
       overflow: auto;
     }
 

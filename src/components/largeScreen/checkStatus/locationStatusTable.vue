@@ -1,8 +1,8 @@
 <template>
  <div class="location-table">
-   <div class="table-column-left">
+   <div v-if="['C01-03','C01-02','C01-01'].includes(shelfNumber)" class="table-column-left">
      <span v-for="(item, index) in currentData.length" :key="index">
-       {{ currentData.length - index }}
+       0{{ currentData.length - index }}
      </span>
    </div>
    <div class="workCrud">
@@ -11,15 +11,15 @@
 
          <div ref="headerRef" class="table-header-container" :class="{isScroll}">
            <table class="table-body-header">
-             <colgroup>
-               <col v-for="item in header" :key="item.dataIndex" :width="item.width">
-             </colgroup>
+<!--             <colgroup>-->
+<!--               <col v-for="hItem in crudHeader" :key="hItem.dataIndex" :width="hItem.width">-->
+<!--             </colgroup>-->
              <thead class="header">
              <tr>
-               <template v-for="item in header" :key="item.dataIndex">
+               <template v-for="hItem in crudHeader" :key="hItem.dataIndex">
                  <th class="header-item">
                    <div class="header-list">
-                     <span v-for="(item, index) in item.label" :key="index">{{item}}</span>
+                     <span >{{hItem.label}}</span>
                    </div>
                  </th>
                </template>
@@ -30,18 +30,20 @@
 
          <div class="scroll-table" :style="{ height }" @scroll="onScroll">
            <table :style="{transform: `translateY(${top}px)`}" class="table-body">
-             <colgroup>
-               <col v-for="item in header" :key="item.dataIndex" :width="item.width">
-             </colgroup>
+<!--             <colgroup>-->
+<!--               <col v-for="hItem in crudHeader" :key="hItem.dataIndex" :width="hItem.width">-->
+<!--             </colgroup>-->
 
              <tbody>
-             <tr ref="tableRowRef" v-for="(item, index) in currentData" :key="item.id" class="table-row">
-               <th v-for="col in header" class="table-row-item" >
+             <tr ref="tableRowRef" v-for="(cItem, index) in currentData" :key="index" class="table-row">
+               <th v-for="col in crudHeader" class="table-row-item" >
 
                  <div class="box-list">
+                  <img v-if="cItem[col.label]" class="box-img" src="/images/box.png" alt="">
+                  <img v-else class="box-img" src="/images/emptyBox.png" alt="">
+                   <!-- <img class="box-img" src="/images/emptyBox.png" alt="">
                    <img class="box-img" src="/images/box.png" alt="">
-                   <img class="box-img" src="/images/box.png" alt="">
-                   <img class="box-img" src="/images/box.png" alt="">
+                   <img class="box-img" src="/images/box.png" alt=""> -->
                  </div>
 
                </th>
@@ -53,6 +55,8 @@
 
      </div>
    </div>
+
+   <div v-if="['C01-03','right'].includes(shelfNumber)" class="end-text">C01-03</div>
  </div>
 
 </template>
@@ -73,82 +77,22 @@ const props = defineProps({
   crudHeader: {
     type: Array,
   },
-  title: {
+  shelfNumber: {
     type: String,
+    default: 'right'
   },
 })
-
 const data = ref([
-  {
-    id: 1,
-    name: '1',
-    project: 'project',
-    suppler_name:'suppler_name',
-    status: '0',
-    order_number: 'order_number',
-    project_no: '1',
-    row_marial_name: '1',
-    unit: '个',
-    number: '10',
-    location: 'location',
-  },
-  {
-    id: 2,
-    name: '2',
-    project: 'project',
-    suppler_name:'suppler_name',
-    status: '1',
-    order_number: 'order_number',
-    project_no: '2',
-    row_marial_name: '2',
-    unit: '个',
-    number: '10',
-    location: 'location',
-  },
-  {
-    id: 3,
-    name: '3',
-    project: 'project',
-    suppler_name:'suppler_name',
-    status: '2',
-    order_number: 'order_number',
-    project_no: '2',
-    row_marial_name: '2',
-    unit: '个',
-    number: '10',
-    location: 'location',
-  },
-  {
-    id: 4,
-    name: '4',
-    project: 'project',
-    suppler_name:'suppler_name',
-    status: 'status',
-    order_number: 'order_number',
-    project_no: '2',
-    row_marial_name: '2',
-    unit: '个',
-    number: '10',
-    location: 'location',
-  },
-  {
-    id: 5,
-    name: '5',
-    project: 'project',
-    suppler_name:'suppler_name',
-    status: 'status',
-    order_number: 'order_number',
-    project_no: '2',
-    row_marial_name: '2',
-    unit: '个',
-    number: '10',
-    location: 'location',
-  }
-])
+{ '24': true, '23': true, '22': true, '21': true, '20': true, '19': false,'18': true, '17': true, '16': false,'15': false, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': false},
+{ '24': false, '23': true, '22': true, '21': false, '20': true, '19': true,'18': false, '17': true, '16': true,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
+{ '24': false, '23': false, '22': true, '21': true, '20': true, '19': true,'18': true, '17': true, '16': false,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
+{ '24': false, '23': true, '22': false, '21': true, '20': false, '19': true,'18': false, '17': true, '16': false,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
+]
+)
 
 
-// const currentData = ref([...props.crudData]);
-const currentData = ref([...data.value]);
+const currentData = ref([...props.crudData]);
+// const currentData = ref([...data.value]);
 
 watch(() => props.crudData, () => {
   if (!currentData.value.length) {
@@ -174,14 +118,30 @@ const height = ref()
 
 
 const header = [
-  { label: [24, 23, 22], dataIndex: 'id', width: 215 },
-  { label: [24, 23, 22], dataIndex: 'firm', width: 215 },
-  { label: [24, 23, 22], dataIndex: 'vendor;', width: 215 },
-  { label: [24, 23, 22], dataIndex: 'orderNumber;', width: 215 },
-  { label: [24, 23, 22], dataIndex: 'orderNumberLine', width: 215 },
-  { label: [24, 23, 22], dataIndex: 'materialName', width: 215 },
-  { label: [24, 23, 22], dataIndex: 'materialUnit', width: 215 },
-  { label: [24, 23, 22], dataIndex: 'materialNum', width: 215 },
+  { label: '24', dataIndex: '24', width: 20 },
+  { label: '23', dataIndex: '23', width: 20 },
+  { label: '22', dataIndex: '22', width: 20 },
+  { label: '21', dataIndex: '21', width: 20 },
+  { label: '20', dataIndex: '20', width: 20 },
+  { label: '19', dataIndex: '19', width: 20 },
+  { label: '18', dataIndex: '18', width: 20 },
+  { label: '17', dataIndex: '17', width: 20 },
+  { label: '16', dataIndex: '16', width: 20 },
+  { label: '15', dataIndex: '15', width: 20 },
+  { label: '14', dataIndex: '14', width: 20 },
+  { label: '13', dataIndex: '13', width: 20 },
+  { label: '12', dataIndex: '12', width: 20 },
+  { label: '11', dataIndex: '11', width: 20 },
+  { label: '10', dataIndex: '10', width: 20 },
+  { label: '09', dataIndex: '9', width: 20 },
+  { label: '08', dataIndex: '8', width: 20 },
+  { label: '07', dataIndex: '7', width: 20 },
+  { label: '06', dataIndex: '6', width: 20 },
+  { label: '05', dataIndex: '5', width: 20 },
+  { label: '04', dataIndex: '4', width: 20 },
+  { label: '03', dataIndex: '3', width: 20 },
+  { label: '02', dataIndex: '2', width: 20 },
+  { label: '01', dataIndex: '1', width: 20 },
 ]
 
 
@@ -236,17 +196,25 @@ function flushData() {
 
 .location-table {
   display: flex;
-  margin-top: 20px;
+  // margin-top: 20px;
+  flex: 0.5;
+  height: 0;
   width: 100%;
-
+.end-text {
+  transform: rotate(-90deg) translateX(-50%);
+  font-size: 16px;
+  white-space: nowrap;
+  color: #1a796a;
+  padding-top: 50px;
+}
   .table-column-left {
     position: relative;
     background: rgb(186,213,116);
-    border: 2px solid #fff;
+    border: 1px solid #fff;
     border-right: none;
     font-size: 14px;
-    padding: 0 8px;
-    padding-top: 30px;
+    padding: 0 4px;
+    padding-top: 20px;
     font-weight: bold;
 
     border-radius: 4px;
@@ -273,7 +241,7 @@ function flushData() {
 .workCrud {
   width: 0;
   flex: 1;
-  border: #ffffff solid 2px;
+  border: #ffffff solid 1px;
   border-left: none;
   border-radius: 4px;
   border-top-left-radius: 0;
@@ -281,8 +249,14 @@ function flushData() {
   background-color:  transparent;
   overflow: hidden;
 
-  .crud-moudle {
+  .crud-container {
+    height: 100%;
+  }
 
+  .crud-moudle {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     .table-header-container {
 
       overflow-x: hidden;
@@ -322,13 +296,14 @@ function flushData() {
         font-size: 14px;
         font-weight: bold;
 
-        .header-item {
-          border: 2px solid rgb(136, 175, 70);
-          border-top: none;
-          border-left: none;
-          border-bottom: none;
-
-          line-height: 30px;
+        .header-item:nth-child(3n) {
+          &:nth-child(3n){
+            border: 2px solid rgb(136, 175, 70);
+            border-top: none;
+            border-left: none;
+            border-bottom: none;
+          }
+          line-height: 20px;
           padding: 0 5px;
 
           .header-list {
@@ -345,11 +320,13 @@ function flushData() {
     }
 
     .scroll-table {
-      overflow: auto;
+      overflow: hidden;
+      flex: 1;
+      height: 0;
     }
 
     .table-body {
-
+      height: 100%;
       .table-row {
         width: 100%;
 
@@ -359,17 +336,21 @@ function flushData() {
         animation: row 0.3s;
         
         .table-row-item {
-          border: 2px solid rgb(136, 175, 70);
-          border-top: none;
-          border-left: none;
-
+          &:nth-child(3n){
+            border: 2px solid rgb(136, 175, 70);
+            border-top: none;
+            border-left: none;
+          }
+          border-bottom: 2px solid rgb(136, 175, 70);
           .box-list {
+            height: 100%;
             display: flex;
             justify-content: space-around;
           }
 
           .box-img {
             cursor: pointer;
+            width: 100%;
           }
         }
         .table-row-item:last-child{

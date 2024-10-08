@@ -9,10 +9,10 @@
         <WorkCrud v-if="workCrudData.planInItems" :crudHeader="crudInHeader" :title="'待入库数据'" :crudData="workCrudData.planInItems" />
         <WorkCrud v-if="workCrudData.planInItems" :crudHeader="crudOutHeader" :title="'待出库数据'" :crudData="workCrudData.planOutItems" />
       </template>
-      <template v-else>
+<!--      <template v-else>-->
         <WorkForm :formData="workFlowData" />
         <workProgress :progressData="workFlowData" />
-      </template>
+<!--      </template>-->
     </div>
   </div>
 </template>
@@ -68,6 +68,9 @@ const crudOutHeader = [
   border: #ffffff solid 2px;
   border-radius: 10px;
   background-image: linear-gradient(to bottom, #b7d8d7, #edf4fe);
+
+  display: flex;
+  flex-direction: column;
   .moudle-title {
     color: #1a796a;
     font-size: 18px;
@@ -87,7 +90,11 @@ const crudOutHeader = [
   }
   .moudle {
 
+    flex: 1;
+    height: 0;
 
+    display: flex;
+    flex-direction: column;
   }
 
 
