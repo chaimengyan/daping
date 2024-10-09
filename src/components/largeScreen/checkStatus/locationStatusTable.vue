@@ -1,6 +1,6 @@
 <template>
  <div class="location-table">
-   <div v-if="['C01-03','C01-02','C01-01'].includes(shelfNumber)" class="table-column-left">
+   <div v-if="['0','1'].includes(shelfType)" class="table-column-left">
      <span v-for="(item, index) in currentData.length" :key="index">
        0{{ currentData.length - index }}
      </span>
@@ -56,7 +56,7 @@
      </div>
    </div>
 
-   <div v-if="['C01-03','right'].includes(shelfNumber)" class="end-text">C01-03</div>
+   <div v-if="['0','2'].includes(shelfType)" class="end-text">C01-03</div>
  </div>
 
 </template>
@@ -77,9 +77,9 @@ const props = defineProps({
   crudHeader: {
     type: Array,
   },
-  shelfNumber: {
+  shelfType: {//0：既显示序号又显示尾号，1：只显示序号，2只显示尾号
     type: String,
-    default: 'right'
+    default: '0'
   },
 })
 const data = ref([
@@ -201,7 +201,7 @@ function flushData() {
   height: 0;
   width: 100%;
 .end-text {
-  transform: rotate(-90deg) translateX(-50%);
+  transform: rotate(-90deg) translateX(0%);
   font-size: 16px;
   white-space: nowrap;
   color: #1a796a;

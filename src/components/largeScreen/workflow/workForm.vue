@@ -91,7 +91,8 @@ const formList = ref([
     .form-row {
       display: flex;
       color: #242424;
-      font-size: 16px;
+      font-size: 18px;
+      font-weight: bold;
       .row-label {
       }
       .row-content {

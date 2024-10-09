@@ -78,7 +78,7 @@
         </div>
 
 
-        <div class="line3">
+        <div class="line2">
           <template v-if="['上架完成','已出库'].includes(progressData.status)">
             <img class="complete-icon" src="/images/complete.png" alt="">
             <span 
@@ -97,7 +97,7 @@
 
             <span class="desc" style="color: #f7ab00">{{ progressData.type === '入库' ? '搬运至库区' : '搬运至出库月台' }}</span>
           </template>
-          <img src="/images/shortLine.png" alt="">
+          <img src="/images/middleLine.png" alt="">
         </div>
 
         <div class="warehouse-location">
@@ -198,6 +198,7 @@ onMounted(() => {
 }
 
 .workProgress {
+  flex: 1;
   padding: 20px;
   border: #ffffff solid 2px;
   border-radius: 10px;
@@ -250,7 +251,7 @@ onMounted(() => {
 
     .line1, .line2, .line3 {
       flex-shrink: 0;
-      width: 200px;
+      width: 160px;
       margin-left: 50px;
       position: relative;
       display: flex;
@@ -266,7 +267,8 @@ onMounted(() => {
 
       .desc {
         color: #808080;
-        font-size: 12px;
+        font-size: 18px;
+        font-weight: bold;
         position: absolute;
         bottom: -25px;
         left: 50%;
@@ -280,7 +282,7 @@ onMounted(() => {
     }
 
     .line1 {
-      transform: translateY(-25px);
+      transform: translateY(-20px);
     }
 
     .line2, .line3 {

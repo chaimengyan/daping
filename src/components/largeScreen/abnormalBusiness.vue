@@ -92,15 +92,16 @@ const cardList = ref([
     //}
     .moudle-card {
 
-      flex: 1;
-      width: 0;
+      // flex: 1;
+      // width: 0;
       height: 100%;
       position: relative;
       display: flex;
       justify-content: center;
       flex-direction: column;
       .card-bg {
-        width: 100%;
+        // width: 100%;
+        height:100%;
       }
       .card-content {
         width: 100%;

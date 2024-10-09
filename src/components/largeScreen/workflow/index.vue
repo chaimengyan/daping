@@ -9,10 +9,10 @@
         <WorkCrud v-if="workCrudData.planInItems" :crudHeader="crudInHeader" :title="'待入库数据'" :crudData="workCrudData.planInItems" />
         <WorkCrud v-if="workCrudData.planInItems" :crudHeader="crudOutHeader" :title="'待出库数据'" :crudData="workCrudData.planOutItems" />
       </template>
-<!--      <template v-else>-->
+     <template v-else>
         <WorkForm :formData="workFlowData" />
         <workProgress :progressData="workFlowData" />
-<!--      </template>-->
+     </template>
     </div>
   </div>
 </template>
@@ -38,6 +38,72 @@ onMounted(() => {
 
 })
 
+const data = ref([
+  {
+    firm: '11231321',
+    orderNumber: '731232',
+    orderNumberLine: '3123123123',
+    materialName:'13123123123123',
+    materialUnit: '312',
+    materialNum: '11',
+    whShelfName: '21'
+  },
+  {
+    firm: '11231321',
+    orderNumber: '731232',
+    orderNumberLine: '3123123123',
+    materialName:'13123123123123',
+    materialUnit: '312',
+    materialNum: '11',
+    whShelfName: '21'
+  },
+  {
+    firm: '11231321',
+    orderNumber: '731232',
+    orderNumberLine: '3123123123',
+    materialName:'13123123123123',
+    materialUnit: '312',
+    materialNum: '11',
+    whShelfName: '21'
+  },
+  {
+    firm: '11231321',
+    orderNumber: '731232',
+    orderNumberLine: '3123123123',
+    materialName:'13123123123123',
+    materialUnit: '312',
+    materialNum: '11',
+    whShelfName: '21'
+  },
+  {
+    firm: '11231321',
+    orderNumber: '731232',
+    orderNumberLine: '3123123123',
+    materialName:'13123123123123',
+    materialUnit: '312',
+    materialNum: '11',
+    whShelfName: '21'
+  }
+  ,
+  {
+    firm: '11231321',
+    orderNumber: '731232',
+    orderNumberLine: '3123123123',
+    materialName:'13123123123123',
+    materialUnit: '312',
+    materialNum: '11',
+    whShelfName: '21'
+  },
+  {
+    firm: '11231321',
+    orderNumber: '731232',
+    orderNumberLine: '3123123123',
+    materialName:'13123123123123',
+    materialUnit: '312',
+    materialNum: '11',
+    whShelfName: '21'
+  }
+])
 const crudInHeader = [
   { label: '项目单位', dataIndex: 'firm', width: 100 },
   { label: '订单号', dataIndex: 'orderNumber', width: 80 },

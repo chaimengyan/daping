@@ -6,26 +6,26 @@
     <div class="moudle">
       <!-- <WarehouseLocation :shelfStatus="checkStatusData.shelfStatus" />
       <GoodsShelves :shelfAllStatus="checkStatusData.shelfAllStatus" /> -->
-      <LocationStatusTable :shelfNumber="'C01-03'" :crudHeader="header1" :crudData="tableData1"/>
+      <LocationStatusTable :shelfType="'0'" :crudHeader="header1" :crudData="tableData1"/>
       <div class="aisle">
         <img src="/images/aisle.png" alt="">
       </div>
       <div class="goods-shelves">
         <div class="goods-shelves-item">
           <div class="goods-shelves-left">
-            <LocationStatusTable :shelfNumber="'C01-02'" :crudHeader="header2" :crudData="tableData2"/>
+            <LocationStatusTable :shelfType="'1'" :crudHeader="header2" :crudData="tableData2"/>
           </div>
           <div class="goods-shelves-right">
-            <LocationStatusTable  :crudHeader="header3" :crudData="tableData3"/>
+            <LocationStatusTable :shelfType="'2'" :crudHeader="header3" :crudData="tableData3"/>
           </div>
         </div>
 
         <div class="goods-shelves-item">
           <div class="goods-shelves-left">
-            <LocationStatusTable :shelfNumber="'C01-01'" :crudHeader="header2" :crudData="tableData2"/>
+            <LocationStatusTable :shelfType="'1'" :crudHeader="header2" :crudData="tableData2"/>
           </div>
           <div class="goods-shelves-right">
-            <LocationStatusTable  :crudHeader="header3" :crudData="tableData3"/>
+            <LocationStatusTable :shelfType="'2'" :crudHeader="header3" :crudData="tableData3"/>
           </div>
         </div>
 
@@ -152,6 +152,7 @@ const tableData3 = ref([
     font-weight: bold;
     position: relative;
     padding-left: 15px;
+    margin-bottom: 10px;
     &::before {
       position: absolute;
       top: 50%;
@@ -172,8 +173,8 @@ const tableData3 = ref([
     .aisle {
       // flex-shrink: 0;
       width: 100%;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
       // display: flex;
       // flex-direction: column;
       // position: relative;
