@@ -46,7 +46,10 @@ onMounted(() => {
     getError()
   }, 60000)
   dateDisplay.value = updateTime()
-    
+  inOrOutNow()
+  getShelfStatus()
+  getJobStatistics()
+  getError()
 })
 
 const dateDisplay = ref('')
