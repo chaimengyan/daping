@@ -34,7 +34,7 @@
               <span></span>
               <span></span>
             </div>
-            <span class="desc" style="color: #f7ab00">{{ progressData.type === '入库' ? '入库月台搬运中' : '下架取货中' }}</span>
+            <span class="desc" style="color: #ee8341">{{ progressData.type === '入库' ? '入库月台搬运中' : '下架取货中' }}</span>
           </template>
           <img src="/images/longLine.png" alt="">
         </div>
@@ -47,7 +47,7 @@
           <template v-else>
             <img src="/images/warehouseLocation.png" alt="">
             <span>库位</span>
-            <span class="desc" style="color: #f7ab00">{{progressData.whShelfName}}</span>
+            <span class="desc" style="color: #ee8341">{{progressData.whShelfName}}</span>
           </template>
         </div>
 
@@ -67,7 +67,7 @@
               <span></span>
               <span></span>
             </div>
-            <span class="desc" style="color: #f7ab00">{{ progressData.type === '入库' ? '搬运至扫描区' : '搬运至扫描区' }}</span>
+            <span class="desc" style="color: #ee8341">{{ progressData.type === '入库' ? '搬运至扫描区' : '搬运至扫描区' }}</span>
           </template>
           <img src="/images/middleLine.png" alt="">
         </div>
@@ -95,7 +95,7 @@
               <span></span>
             </div>
 
-            <span class="desc" style="color: #f7ab00">{{ progressData.type === '入库' ? '搬运至库区' : '搬运至出库月台' }}</span>
+            <span class="desc" style="color: #ee8341">{{ progressData.type === '入库' ? '搬运至库区' : '搬运至出库月台' }}</span>
           </template>
           <img src="/images/middleLine.png" alt="">
         </div>
@@ -108,7 +108,7 @@
           <template v-else>
             <img src="/images/warehouseLocation.png" alt="">
             <span>库位</span>
-            <span class="desc" style="color: #f7ab00">{{progressData.whShelfName}}</span>
+            <span class="desc" style="color: #ee8341">{{progressData.whShelfName}}</span>
           </template>
         </div>
       </div>
@@ -244,6 +244,7 @@ onMounted(() => {
       font-weight: bold;
 
       >span {
+        margin-top: 10px;
         white-space: nowrap;
         text-align: center;
       }

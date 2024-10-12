@@ -56,7 +56,7 @@
      </div>
    </div>
 
-   <div v-if="['0','2'].includes(shelfType)" class="end-text">C01-03</div>
+   <div v-if="['0','2'].includes(shelfType)" class="end-text">{{'C01-0'+shelfNum}}</div>
  </div>
 
 </template>
@@ -78,6 +78,10 @@ const props = defineProps({
     type: Array,
   },
   shelfType: {//0：既显示序号又显示尾号，1：只显示序号，2只显示尾号
+    type: String,
+    default: '0'
+  },
+  shelfNum: {
     type: String,
     default: '0'
   },
@@ -205,11 +209,11 @@ function flushData() {
   font-size: 16px;
   white-space: nowrap;
   color: #1a796a;
-  padding-top: 50px;
+  padding-top: 70px;
 }
   .table-column-left {
     position: relative;
-    background: rgb(186,213,116);
+    background: #32766a;
     border: 1px solid #fff;
     border-right: none;
     font-size: 14px;
@@ -226,15 +230,15 @@ function flushData() {
     justify-content: space-around;
 
 
-    &::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 3px;
-      height: 100%;
-      background: rgb(136, 175, 70);
-    }
+    // &::after {
+    //   content: '';
+    //   position: absolute;
+    //   right: 0;
+    //   top: 0;
+    //   width: 3px;
+    //   height: 100%;
+    //   background: #40897c;
+    // }
   }
 
 }
@@ -261,8 +265,8 @@ function flushData() {
 
       overflow-x: hidden;
       overflow-y: hidden;
-      background: rgb(186,213,116);
-      border: 2px solid rgb(136, 175, 70);
+      background: #32766a;
+      border: 2px solid #40897c;
       border-top: none;
       border-left: none;
       border-right: none;
@@ -297,12 +301,12 @@ function flushData() {
         font-weight: bold;
 
         .header-item:nth-child(3n) {
-          &:nth-child(3n){
-            border: 2px solid rgb(136, 175, 70);
+          // &:nth-child(3n){
+            border: 2px solid #40897c;
             border-top: none;
             border-left: none;
             border-bottom: none;
-          }
+          // }
           line-height: 20px;
           padding: 0 5px;
 
@@ -312,10 +316,13 @@ function flushData() {
             align-items: center;
           }
         }
-
-        .header-item:last-child{
-          border-right: none !important;
+        .header-item:first-child{
+          border-left:  2px solid #40897c;;
         }
+
+        // .header-item:last-child{
+        //   border-right: none !important;
+        // }
       }
     }
 
@@ -337,11 +344,9 @@ function flushData() {
         
         .table-row-item {
           &:nth-child(3n){
-            border: 2px solid rgb(136, 175, 70);
-            border-top: none;
-            border-left: none;
+            border-right: 2px solid #40897c;
           }
-          border-bottom: 2px solid rgb(136, 175, 70);
+          border-bottom: 2px solid #40897c;
           .box-list {
             height: 100%;
             display: flex;
@@ -353,8 +358,8 @@ function flushData() {
             width: 100%;
           }
         }
-        .table-row-item:last-child{
-          border-right: none !important;
+        .table-row-item:first-child{
+          border-left:  2px solid #40897c;;
         }
       }
     }

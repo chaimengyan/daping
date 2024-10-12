@@ -99,7 +99,7 @@ const cardList = ref([
   }
   .moudle {
     display: flex;
-    margin-top: 10px;
+    margin-top: 20px;
     height: 0 !important;
     flex: 1;
     justify-content: space-between;

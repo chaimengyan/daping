@@ -16,7 +16,7 @@
 
     <div class="info-content">
       <Workflow :workCrudData="workCrudData" :workFlowData="workFlowData" class="workflow" />
-      <CheckStatus :checkStatusData="checkStatusData" class="check-status" />
+      <CheckStatus  :checkStatusData="checkStatusData" class="check-status" />
     </div>
   </div>
 </template>
@@ -31,13 +31,20 @@ import CheckStatus from '@/components/largeScreen/checkStatus/index.vue'
 import {request} from "@/utils/request.js";
 
 onMounted(() => {
-  // setInterval(() => {
-  //   dateDisplay.value = updateTime()
-  //   getJobStatistics()
-  //   getError()
-  //   getShelfStatus()
-  //   inOrOutNow()
-  // }, 1000)
+  // 出入库状态3秒一次，表格30秒一次，库位15秒一次，作业统计1分钟一次
+  setInterval(() => {
+    dateDisplay.value = updateTime()
+  }, 1000)
+   setInterval(() => {
+    inOrOutNow()
+  }, 3000)
+   setInterval(() => {
+    getShelfStatus()
+  }, 15000)
+   setInterval(() => {
+    getJobStatistics()
+    getError()
+  }, 60000)
   dateDisplay.value = updateTime()
     
 })

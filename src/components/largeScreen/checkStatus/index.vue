@@ -1,31 +1,31 @@
 <template>
   <div class="homework">
     <span class="moudle-title">
-      库位状态
+      电商库位状态
     </span>
     <div class="moudle">
       <!-- <WarehouseLocation :shelfStatus="checkStatusData.shelfStatus" />
       <GoodsShelves :shelfAllStatus="checkStatusData.shelfAllStatus" /> -->
-      <LocationStatusTable :shelfType="'0'" :crudHeader="header1" :crudData="tableData1"/>
+      <LocationStatusTable :shelfType="'0'" :shelfNum="'3'" :crudHeader="header1" :crudData="tableData1"/>
       <div class="aisle">
         <img src="/images/aisle.png" alt="">
       </div>
       <div class="goods-shelves">
         <div class="goods-shelves-item">
           <div class="goods-shelves-left">
-            <LocationStatusTable :shelfType="'1'" :crudHeader="header2" :crudData="tableData2"/>
+            <LocationStatusTable :shelfType="'1'" :shelfNum="'2'" :crudHeader="header2" :crudData="tableData2"/>
           </div>
           <div class="goods-shelves-right">
-            <LocationStatusTable :shelfType="'2'" :crudHeader="header3" :crudData="tableData3"/>
+            <LocationStatusTable :shelfType="'2'" :shelfNum="'2'" :crudHeader="header3" :crudData="tableData3"/>
           </div>
         </div>
 
         <div class="goods-shelves-item">
           <div class="goods-shelves-left">
-            <LocationStatusTable :shelfType="'1'" :crudHeader="header2" :crudData="tableData2"/>
+            <LocationStatusTable :shelfType="'1'" :shelfNum="'1'" :crudHeader="header2" :crudData="tableData4"/>
           </div>
           <div class="goods-shelves-right">
-            <LocationStatusTable :shelfType="'2'" :crudHeader="header3" :crudData="tableData3"/>
+            <LocationStatusTable :shelfType="'2'" :shelfNum="'1'" :crudHeader="header3" :crudData="tableData5"/>
           </div>
         </div>
 
@@ -39,22 +39,39 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted,computed } from 'vue'
 import GoodsShelves from '@/components/largeScreen/checkStatus/goodsShelves.vue'
 import WarehouseLocation from '@/components/largeScreen/checkStatus/warehouseLocation.vue'
 import LocationStatusTable from "./locationStatusTable.vue";
 
-defineProps({
+const props = defineProps({
   checkStatusData: {
     type: Object,
   },
 })
+
+const tableData1 = computed(() => groupBy(props.checkStatusData['03'], header1.value.map(h=>(h.label))))
+const tableData2 = computed(() => groupBy(props.checkStatusData['02'], header2.value.map(h=>(h.label))))
+const tableData3 = computed(() => groupBy(props.checkStatusData['02'], header3.value.map(h=>(h.label))))
+const tableData4 = computed(() => groupBy(props.checkStatusData['01'], header2.value.map(h=>(h.label))))
+const tableData5 = computed(() => groupBy(props.checkStatusData['01'], header3.value.map(h=>(h.label))))
+
 onMounted(() => {
- 
+  console.log(groupBy(props.checkStatusData['03'], header1.value.map(h=>(h.label))),'111111');
 })
 
+const groupBy = (array, keys) => {
+  if(!array) return []
+  console.log(array,'array');
+  return array.filter(obj => {
+      return Object.keys(obj).some(key => keys.includes(key))
+    }
+  ).reverse()
+};
+
+
 const header1 = ref([
-{ label: '24', dataIndex: '24', width: 20 },
+  { label: '24', dataIndex: '24', width: 20 },
   { label: '23', dataIndex: '23', width: 20 },
   { label: '22', dataIndex: '22', width: 20 },
   { label: '21', dataIndex: '21', width: 20 },
@@ -79,12 +96,12 @@ const header1 = ref([
   { label: '02', dataIndex: '2', width: 20 },
   { label: '01', dataIndex: '1', width: 20 },
 ])
-const tableData1 = ref([
-{ '24': true, '23': true, '22': true, '21': true, '20': true, '19': false,'18': true, '17': true, '16': false,'15': false, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': false},
-{ '24': false, '23': true, '22': true, '21': false, '20': true, '19': true,'18': false, '17': true, '16': true,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
-{ '24': false, '23': false, '22': true, '21': true, '20': true, '19': true,'18': true, '17': true, '16': false,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
-{ '24': false, '23': true, '22': false, '21': true, '20': false, '19': true,'18': false, '17': true, '16': false,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
-])
+// const tableData1 = ref([
+// { '24': true, '23': true, '22': true, '21': true, '20': true, '19': false,'18': true, '17': true, '16': false,'15': false, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': false},
+// { '24': false, '23': true, '22': true, '21': false, '20': true, '19': true,'18': false, '17': true, '16': true,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
+// { '24': false, '23': false, '22': true, '21': true, '20': true, '19': true,'18': true, '17': true, '16': false,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
+// { '24': false, '23': true, '22': false, '21': true, '20': false, '19': true,'18': false, '17': true, '16': false,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
+// ])
 
 const header2 = ref([
   { label: '21', dataIndex: '21', width: 20 },
@@ -101,16 +118,15 @@ const header2 = ref([
   { label: '10', dataIndex: '10', width: 20 },
   
 ])
-const tableData2 = ref([
-{  '21': true, '20': true, '19': false,'18': true, '17': true, '16': false,'15': false, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, },
-{ '21': false, '20': true, '19': true,'18': false, '17': true, '16': true,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, },
-{  '21': true, '20': true, '19': true,'18': true, '17': true, '16': false,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, },
-{ '21': true, '20': false, '19': true,'18': false, '17': true, '16': false,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, },
+// const tableData2 = ref([
+// {  '21': true, '20': true, '19': false,'18': true, '17': true, '16': false,'15': false, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, },
+// { '21': false, '20': true, '19': true,'18': false, '17': true, '16': true,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, },
+// {  '21': true, '20': true, '19': true,'18': true, '17': true, '16': false,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, },
+// { '21': true, '20': false, '19': true,'18': false, '17': true, '16': false,'15': true, '14': true, '13': true,'24': true, '12': true, '11': true,'10': true, },
 
-])
+// ])
 
 const header3 = ref([
-
   { label: '09', dataIndex: '9', width: 20 },
   { label: '08', dataIndex: '8', width: 20 },
   { label: '07', dataIndex: '7', width: 20 },
@@ -121,15 +137,16 @@ const header3 = ref([
   { label: '02', dataIndex: '2', width: 20 },
   { label: '01', dataIndex: '1', width: 20 },
 ])
-const tableData3 = ref([
-{ '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': false},
-{ '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
-{ '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
-{ '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
+// const tableData3 = ref([
+// { '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': false},
+// { '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
+// { '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
+// { '09': true, '08': true,'07': true, '06': true, '05': true,'04': true, '03': true, '02': true,'01': true},
 
-])
+// ])
 
-
+// const tableData4 = ref([])
+// const tableData5 = ref([])
 
 
 
@@ -159,7 +176,7 @@ const tableData3 = ref([
       left: 0;
       content: '';
       width: 6px;
-      height: 80%;
+      height: 90%;
       background-color: #1a796a;
       transform: translateY(-50%);
     }

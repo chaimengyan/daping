@@ -79,12 +79,12 @@ const cardList = ref([
   }
   .moudle {
     display: flex;
-    margin-top: 10px;
+    margin-top: 40px;
     justify-content: space-around;
     //padding: 0 80px;
 
     height: 0 !important;
-    flex: 1;
+    flex: 0.8;
     column-gap: 10px;
 
     //.moudle-card:first-child {
