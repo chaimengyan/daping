@@ -1,8 +1,15 @@
 <template>
   <div class="homework">
-    <span class="moudle-title">
-      电商库位状态
-    </span>
+    <div class="header">
+      <span class="moudle-title">
+        电商库位状态
+      </span>
+      <span class="box">
+        <img class="box-img" src="/images/emptyBox.png" alt="">已占用
+        <img class="box-img" src="/images/box.png" alt="">未占用
+      </span>
+    </div>
+    
     <div class="moudle">
       <!-- <WarehouseLocation :shelfStatus="checkStatusData.shelfStatus" />
       <GoodsShelves :shelfAllStatus="checkStatusData.shelfAllStatus" /> -->
@@ -163,6 +170,11 @@ const header3 = ref([
 
   display: flex;
   flex-direction: column;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .moudle-title {
     color: #1a796a;
     font-size: 18px;
@@ -179,6 +191,20 @@ const header3 = ref([
       height: 90%;
       background-color: #1a796a;
       transform: translateY(-50%);
+    }
+  }
+  .box {
+    display:flex;
+    align-items: center;
+    color: #1a796a;
+    font-size: 16px;
+    font-weight: bold;
+    .box-img {
+      width: 30px;
+      height: 100%;
+      margin-left: 20px;
+      margin-right: 10px;
+
     }
   }
   .moudle {

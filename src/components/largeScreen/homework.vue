@@ -33,6 +33,13 @@ onMounted(() => {
 })
 
 const cardList = ref([
+  
+  {
+    bg: '/images/hwRedBg.png',
+    icon: '/images/completed.png',
+    number: 'inAndOutAllCount',
+    desc: '当月出入库总量',
+  },
   {
     bg: '/images/hwRedBg.png',
     icon: '/images/today.png',
@@ -41,15 +48,9 @@ const cardList = ref([
   },
   {
     bg: '/images/hwRedBg.png',
-    icon: '/images/completed.png',
-    number: 'inAndOutAllCount',
-    desc: '已完成出入库总量',
-  },
-  {
-    bg: '/images/hwRedBg.png',
     icon: '/images/residue.png',
     number: 'inAndOutPlanCount',
-    desc: '剩余出入库总量',
+    desc: '当日待出入库总量',
   },
   {
     bg: '/images/hwGreenBg.png',

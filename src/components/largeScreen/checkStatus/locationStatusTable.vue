@@ -16,7 +16,7 @@
 <!--             </colgroup>-->
              <thead class="header">
              <tr>
-               <template v-for="hItem in crudHeader" :key="hItem.dataIndex">
+               <template v-for="(hItem,hi) in crudHeader" :key="hItem.hi">
                  <th class="header-item">
                    <div class="header-list">
                      <span >{{hItem.label}}</span>
@@ -36,7 +36,7 @@
 
              <tbody>
              <tr ref="tableRowRef" v-for="(cItem, index) in currentData" :key="index" class="table-row">
-               <th v-for="col in crudHeader" class="table-row-item" >
+               <th v-for="(col, i) in crudHeader" class="table-row-item" :key="i">
 
                  <div class="box-list">
                   <img v-if="cItem[col.label]" class="box-img" src="/images/box.png" alt="">
@@ -99,12 +99,12 @@ const currentData = ref([...props.crudData]);
 // const currentData = ref([...data.value]);
 
 watch(() => props.crudData, () => {
-  if (!currentData.value.length) {
+  // if (!currentData.value.length) {
     currentData.value = [...props.crudData]
-  } else {
-    // 去重合并对象
-    mergeData(props.crudData);
-  }
+  // } else {
+  //   // 去重合并对象
+  //   mergeData(props.crudData);
+  // }
 })
 
 onMounted(() => {

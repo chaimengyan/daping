@@ -59,7 +59,7 @@
               style="color: #1a796a"
               >{{ progressData.type === '入库' ? 'RFID扫描完成' : 'RFID扫描完成' }}</span>
           </template>
-          <template v-if="['卸货完成', '扫描中'].includes(progressData.status)">
+          <template v-if="['卸货完成','取货完成', '扫描中'].includes(progressData.status)">
             <div class="loading">
               <span></span>
               <span></span>
