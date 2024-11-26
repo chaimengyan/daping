@@ -120,9 +120,7 @@ const header2 = ref([
   { label: '15', dataIndex: '15', width: 20 },
   { label: '14', dataIndex: '14', width: 20 },
   { label: '13', dataIndex: '13', width: 20 },
-  { label: '12', dataIndex: '12', width: 20 },
-  { label: '11', dataIndex: '11', width: 20 },
-  { label: '10', dataIndex: '10', width: 20 },
+  
   
 ])
 // const tableData2 = ref([
@@ -134,6 +132,9 @@ const header2 = ref([
 // ])
 
 const header3 = ref([
+  { label: '12', dataIndex: '12', width: 20 },
+  { label: '11', dataIndex: '11', width: 20 },
+  { label: '10', dataIndex: '10', width: 20 },
   { label: '09', dataIndex: '9', width: 20 },
   { label: '08', dataIndex: '8', width: 20 },
   { label: '07', dataIndex: '7', width: 20 },
@@ -240,7 +241,7 @@ const header3 = ref([
         column-gap: 100px;
 
         .goods-shelves-left, .goods-shelves-right {
-          flex: 1;
+          flex: 0.8;
           display: flex;
           flex-direction: column;
           .location-table {
@@ -248,7 +249,7 @@ const header3 = ref([
           }
         }
         .goods-shelves-right {
-          flex: 0.8;
+          flex: 1;
         }
       }
     }
